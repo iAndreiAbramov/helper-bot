@@ -1,10 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './module/app.module';
 import { Logger } from '@nestjs/common';
-
-// TODO: move to config service
-const mode = 'dev';
-const port = 3100;
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -14,6 +11,10 @@ async function bootstrap() {
     },
   });
   app.setGlobalPrefix('v1');
+  const appConfig = app.get(ConfigService);
+  const port = appConfig.getOrThrow('app.port');
+  const mode = appConfig.getOrThrow('app.mode');
+
   await app.listen(port);
 
   Logger.log(`🚀 Application is running on: http://localhost:${port}`);
