@@ -9,6 +9,6 @@ export class TgController {
   @Post('/send')
   @HttpCode(HttpStatus.OK)
   async sendMessage() {
-    return this.tgService.sentMessage();
+    return this.tgService.sendMessage('Hi from bot');
   }
 }
