@@ -1,9 +1,9 @@
 import { Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
-import { TgService } from '@src/module/tg/tg.service';
+import { TelegramService } from '@src/module/telegram/telegram.service';
 
 @Controller('/tg')
-export class TgController {
-  constructor(private readonly tgService: TgService) {
+export class TelegramController {
+  constructor(private readonly tgService: TelegramService) {
   }
 
   @Post('/send')

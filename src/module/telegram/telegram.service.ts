@@ -3,7 +3,7 @@ import { Telegraf } from 'telegraf';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
-export class TgService {
+export class TelegramService {
   private readonly chatId: string;
   private readonly telegraf: Telegraf;
 

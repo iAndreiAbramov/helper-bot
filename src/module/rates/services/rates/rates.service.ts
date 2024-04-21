@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ZeroXService } from '@src/module/rates/services/zero-x.service';
+import { ZeroXService } from '@src/module/rates/services/zero-x/zero-x.service';
 
 @Injectable()
 export class RatesService {
