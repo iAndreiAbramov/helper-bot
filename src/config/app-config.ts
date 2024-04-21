@@ -8,8 +8,9 @@ export default registerAs('app', (): IAppConfig => {
   const config: IAppConfig = {
     port: parseInt(process.env.APP_PORT),
     mode: process.env.APP_MODE as AppMode,
-    tgId: process.env.APP_TG_ID ?? '',
-    chatId: process.env.APP_CHAT_ID ?? '',
+    tgId: process.env.APP_TG_ID,
+    chatId: process.env.APP_CHAT_ID,
+    zeroXApiKey: process.env.ZERO_X_API_KEY,
   };
 
   const schema = Joi.object<IAppConfig, false, IAppConfig>({
@@ -17,6 +18,7 @@ export default registerAs('app', (): IAppConfig => {
     mode: Joi.string().valid(AppMode.Dev, AppMode.Prod).default(AppMode.Dev),
     tgId: Joi.string().required(),
     chatId: Joi.string().required(),
+    zeroXApiKey: Joi.string().required(),
   });
 
   const { error } = schema.validate(config);
