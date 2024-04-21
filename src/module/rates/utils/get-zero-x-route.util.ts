@@ -8,6 +8,6 @@ export const getZeroXRoute = {
   }): string => {
     const gasPriceParam = gasPrice ? `&gasPrice=${gasPrice}` : '';
     const excludedSourcesParam = excludedSources ? `&excludedSources=${excludedSources}` : '';
-    return `/price?sellToken=${sellToken}&buyToken=${buyToken}&sellAmount=${sellAmount}${gasPriceParam}${excludedSourcesParam}`;
+    return `https://api.0x.org/swap/v1/price?sellToken=${sellToken}&buyToken=${buyToken}&sellAmount=${sellAmount}${gasPriceParam}${excludedSourcesParam}`;
   },
 };
