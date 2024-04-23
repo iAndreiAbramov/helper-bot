@@ -1,9 +1,9 @@
 import { registerAs } from '@nestjs/config';
-import { FirebaseConfig } from '@src/config/firebase/types/firebase-config.interface';
+import { IFirebaseConfig } from '@src/shared/types/config/firebase-config.interface';
 import * as Joi from 'joi';
 
-export default registerAs('firebase', (): FirebaseConfig => {
-  const config: FirebaseConfig = {
+export default registerAs('firebase', (): IFirebaseConfig => {
+  const config: IFirebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
     authDomain: process.env.FIREBASE_AUTH_DOMAIN,
     projectId: process.env.FIREBASE_PROJECT_ID,
@@ -12,7 +12,7 @@ export default registerAs('firebase', (): FirebaseConfig => {
     appId: process.env.FIREBASE_APP_ID,
   };
 
-  const schema = Joi.object<FirebaseConfig, false, FirebaseConfig>({
+  const schema = Joi.object<IFirebaseConfig, false, IFirebaseConfig>({
     apiKey: Joi.string().required(),
     authDomain: Joi.string().required(),
     projectId: Joi.string().required(),
