@@ -1,4 +1,4 @@
-export interface IAppConfig {
+export interface AppConfig {
   port?: number;
   mode?: 'dev' | 'prod';
   tgId?: string;

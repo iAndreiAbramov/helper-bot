@@ -1,11 +1,11 @@
 import { registerAs } from '@nestjs/config';
 import * as Joi from 'joi';
 import * as process from 'process';
-import { AppMode } from '@src/config/types/app-mode.enum';
-import { IAppConfig } from '@src/config/types/app-config.interface';
+import { AppMode } from '@src/config/app/types/app-mode.enum';
+import { AppConfig } from '@src/config/app/types/app-config.interface';
 
-export default registerAs('app', (): IAppConfig => {
-  const config: IAppConfig = {
+export default registerAs('app', (): AppConfig => {
+  const config: AppConfig = {
     port: parseInt(process.env.APP_PORT),
     mode: process.env.APP_MODE as AppMode,
     tgId: process.env.APP_TG_ID,
@@ -13,7 +13,7 @@ export default registerAs('app', (): IAppConfig => {
     zeroXApiKey: process.env.ZERO_X_API_KEY,
   };
 
-  const schema = Joi.object<IAppConfig, false, IAppConfig>({
+  const schema = Joi.object<AppConfig, false, AppConfig>({
     port: Joi.number().port().required(),
     mode: Joi.string().valid(AppMode.Dev, AppMode.Prod).default(AppMode.Dev),
     tgId: Joi.string().required(),
