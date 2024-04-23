@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { TokensRepository } from '@src/module/firebase/tokens.repositoty';
+import { TokenSymbol } from '@src/shared/types/crypto/token-symbol.enum';
 
 @Injectable()
 export class TokensService {
@@ -8,7 +9,7 @@ export class TokensService {
   ) {
   }
 
-  public async getTokens() {
-    return this.tokensRepository.getTokenData();
+  public async getTokenInfo(tokenSymbol: TokenSymbol) {
+    return this.tokensRepository.getTokenInfo(tokenSymbol);
   }
 }

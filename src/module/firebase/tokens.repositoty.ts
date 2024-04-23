@@ -1,8 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { IFirebaseConfig } from '@src/shared/types/config/firebase-config.interface';
 import { ConfigService } from '@nestjs/config';
-import { initializeApp, App, applicationDefault } from 'firebase-admin/app';
-import { getFirestore, Firestore } from 'firebase-admin/firestore';
+import { App, applicationDefault, initializeApp } from 'firebase-admin/app';
+import { Firestore, getFirestore } from 'firebase-admin/firestore';
+import { HttpStatusCode } from 'axios';
+import { TokenSymbol } from '@src/shared/types/crypto/token-symbol.enum';
+import { IToken } from '@src/shared/types/crypto/token.interface';
 
 @Injectable()
 export class TokensRepository {
@@ -21,7 +24,15 @@ export class TokensRepository {
     this.db = getFirestore(this.firebaseApp);
   }
 
-  public async getTokenData() {
-    return await this.db.collection('tokens').get();
+  public async getTokenInfo(tokenSymbol: TokenSymbol): Promise<IToken> {
+    const tokensRef = this.db.collection('tokens');
+    const doc = tokensRef.doc(tokenSymbol);
+    return await doc.get().then((doc) => {
+      if (doc.exists) {
+        return doc.data() as IToken;
+      } else {
+        throw new HttpException('No such document!', HttpStatusCode.NotFound);
+      }
+    });
   }
 }

@@ -1,5 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { TokensService } from '@src/module/firebase/tokens.service';
+import { TokenSymbol } from '@src/shared/types/crypto/token-symbol.enum';
 
 @Controller('tokens')
 export class TokensController {
@@ -9,7 +10,7 @@ export class TokensController {
   }
 
   @Get()
-  public async getTokens() {
-    return this.tokensService.getTokens();
+  public async getTokenInfo(@Query('symbol') tokenSymbol: TokenSymbol) {
+    return this.tokensService.getTokenInfo(tokenSymbol);
   }
 }
