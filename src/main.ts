@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './module/app.module';
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
@@ -11,6 +11,8 @@ async function bootstrap() {
     },
   });
   app.setGlobalPrefix('v1');
+  app.useGlobalPipes(new ValidationPipe({ transform: true }));
+
   const appConfig = app.get(ConfigService);
   const port = appConfig.getOrThrow('app.port');
   const mode = appConfig.getOrThrow('app.mode');
