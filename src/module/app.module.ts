@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
-import { TgModule } from '@src/module/tg/tg.module';
+import { TelegramModule } from '@src/module/telegram/telegram.module';
 import { AppConfigModule } from '@src/module/app-config/app-config.module';
+import { RatesModule } from '@src/module/rates/rates.module';
+import { FirebaseModule } from '@src/module/firebase/firebase.module';
 
 @Module({
-  imports: [TgModule, AppConfigModule],
+  imports: [TelegramModule, AppConfigModule, RatesModule, FirebaseModule],
   controllers: [],
   providers: [],
 })
