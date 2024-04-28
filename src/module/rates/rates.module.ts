@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { RatesService } from '@src/module/rates/services/rates/rates.service';
 import { ZeroXService } from '@src/module/rates/services/zero-x/zero-x.service';
 import { HttpModule } from '@nestjs/axios';
 import { AppConfigModule } from '@src/module/app-config/app-config.module';
@@ -13,7 +12,6 @@ import { TelegramModule } from '@src/module/telegram/telegram.module';
     inject: [ConfigService],
     useFactory: async (configService: ConfigService) => ({
       baseURL: BaseUrlByNetworkEnum.Bsc,
-      timeout: 10000,
       headers: {
         'Content-Type': 'application/json',
         '0x-api-key': configService.getOrThrow('app.zeroXApiKey'),
@@ -21,7 +19,7 @@ import { TelegramModule } from '@src/module/telegram/telegram.module';
     }),
   })],
   controllers: [RatesController],
-  providers: [RatesService, ZeroXService],
+  providers: [ZeroXService],
 })
 export class RatesModule {
 }

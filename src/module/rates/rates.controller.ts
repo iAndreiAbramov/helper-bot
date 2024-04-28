@@ -1,13 +1,13 @@
 import { Controller, Get } from '@nestjs/common';
-import { RatesService } from '@src/module/rates/services/rates/rates.service';
+import { ZeroXService } from '@src/module/rates/services/zero-x/zero-x.service';
 
 @Controller('rates')
 export class RatesController {
-  constructor(private readonly ratesService: RatesService) {
+  constructor(private readonly zeroXService: ZeroXService) {
   }
 
   @Get('btcmt')
   getBtcmtToUsdtRate() {
-    return this.ratesService.getBtcmtRate();
+    return this.zeroXService.getBtcmtToUsdtRate();
   }
 }

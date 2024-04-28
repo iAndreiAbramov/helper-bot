@@ -88,7 +88,7 @@
     "**/src/**/*.+(js,ts,json)": [
       "prettier --write && git add -A"
     ],
-    "**/src/**/*.{ts}": [
+    "**/src/**/*.ts": [
       "eslint --max-warnings=0 --fix \"**/*.+(ts)\""
     ]
   }

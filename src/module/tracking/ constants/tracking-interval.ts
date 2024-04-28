@@ -1,0 +1,1 @@
+export const TRACKING_INTERVAL = 10000;
