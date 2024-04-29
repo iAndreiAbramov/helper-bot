@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { TokensRepository } from '@src/module/firebase/tokens.repositoty';
+import { TokensRepository } from '@src/module/tokens/tokens.repositoty';
 import { TokenSymbol } from '@src/shared/types/crypto/token-symbol.enum';
 
 @Injectable()

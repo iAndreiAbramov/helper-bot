@@ -1,4 +1,4 @@
-export interface IToken {
+export interface ITokenInfo {
   high?: number;
   low?: number;
   mode?: 'bear' | 'flat' | 'bull';

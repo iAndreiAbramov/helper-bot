@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { TokensService } from '@src/module/firebase/tokens.service';
-import { TokenInfoQuery } from '@src/module/firebase/query/token-info.query';
+import { TokensService } from '@src/module/tokens/tokens.service';
+import { TokenInfoQuery } from '@src/module/tokens/query/token-info.query';
 
 @Controller('tokens')
 export class TokensController {

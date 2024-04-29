@@ -20,6 +20,7 @@ import { TelegramModule } from '@src/module/telegram/telegram.module';
   })],
   controllers: [RatesController],
   providers: [ZeroXService],
+  exports: [ZeroXService],
 })
 export class RatesModule {
 }

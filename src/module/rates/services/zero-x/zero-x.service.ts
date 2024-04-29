@@ -16,7 +16,7 @@ export class ZeroXService {
   ) {
   }
 
-  async getBtcmtToUsdtRate() {
+  async getBtcmtToUsdtRate(): Promise<string> {
     const { data } = await firstValueFrom(
       this.httpService.get<ZeroXRateResponse>(
         getZeroXRoute.Price({
@@ -26,6 +26,11 @@ export class ZeroXService {
         })),
     );
 
-    return this.telegramService.sendMessage(`BTCMT to USDT rate: ${data.grossPrice}`);
+    return data.grossPrice;
+  }
+
+  async reportBtcmtToUsdtRate(): Promise<void> {
+    const rate = await this.getBtcmtToUsdtRate();
+    await this.telegramService.sendMessage(`BTCMT/USDT rate: ${rate}`);
   }
 }

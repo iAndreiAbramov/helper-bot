@@ -8,6 +8,6 @@ export class RatesController {
 
   @Get('btcmt')
   getBtcmtToUsdtRate() {
-    return this.zeroXService.getBtcmtToUsdtRate();
+    return this.zeroXService.reportBtcmtToUsdtRate();
   }
 }

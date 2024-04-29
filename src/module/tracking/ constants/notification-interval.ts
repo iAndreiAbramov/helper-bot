@@ -1,0 +1,1 @@
+export const NOTIFICATION_INTERVAL_MINUTES = 60;
